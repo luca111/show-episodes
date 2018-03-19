@@ -42,6 +42,5 @@ react-native run-android
 ```
 
 ## To do
-Use environment variables for the server address.
 Remove the onPress opacity effect in the ItemDetailsScreen.
 Handle offline status and fetching errors.
