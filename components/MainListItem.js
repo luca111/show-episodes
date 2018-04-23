@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
 
 import { ListItem } from "react-native-elements";
 

@@ -15,11 +15,18 @@
   },
   "devDependencies": {
     "babel-jest": "22.4.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-preset-react-native": "4.0.0",
+    "enzyme": "^3.3.0",
     "jest": "22.4.2",
+    "node-fetch": "^2.1.2",
     "react-test-renderer": "16.3.0-alpha.1"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|react-navigation|react-native-elements|react-native-vector-icons|react-native-safe-area-view)/)"
+  ],
+  "setupFiles": ["./setupJest.js"]
   }
 }

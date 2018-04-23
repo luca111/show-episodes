@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image } from 'react-native';
-
-import { StackNavigator } from 'react-navigation';
+import { Text, View } from 'react-native';
 
 import { Tile } from "react-native-elements";
 

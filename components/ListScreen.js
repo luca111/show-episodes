@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableHighlight, Image } from 'react-native';
+import { StyleSheet, FlatList, TouchableHighlight } from 'react-native';
 
 import MainListItem from "./MainListItem.js";
 
@@ -13,6 +13,20 @@ export default class ListScreen extends Component {
         nextOffset: 50
     };
     this.handleLoadMore = this.handleLoadMore.bind(this);
+  }
+  componentDidMount(){
+    return fetch('http://localhost:3000/shows-api?offset=0&entries=50')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          dataSource: responseJson
+        }, function(){
+
+        });
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
   }
   handleLoadMore() {
   return fetch('http://localhost:3000/shows-api?offset=' + this.state.nextOffset + '&entries=25')
@@ -33,27 +47,13 @@ export default class ListScreen extends Component {
       console.error(error);
     });
   }
-  componentDidMount(){
-    return fetch('http://localhost:3000/shows-api?offset=0&entries=50')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({
-          dataSource: responseJson
-        }, function(){
-
-        });
-      })
-      .catch((error) =>{
-        console.error(error);
-      });
-  }
   render(){
     return(
         <FlatList
             data={this.state.dataSource}
             style={styles.listContainer}
             renderItem={({item}) =>
-                <TouchableHighlight onPress={() => {this.props.navigation.navigate("Details", {itemInfo: item.info})}}>
+                <TouchableHighlight key={"thl-" + item.id} onPress={() => {this.props.navigation.navigate("Details", {itemInfo: item.info})}}>
                     <MainListItem itemId={item.id} itemInfo={item.info} />
                 </TouchableHighlight>
             }
